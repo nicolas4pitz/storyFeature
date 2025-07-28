@@ -51,7 +51,7 @@ let handleFileSelect = (event: Event) => {
       const base64String = event.target?.result as string;
       
       const fileData = {
-        id: Date.now(), // ID único baseado no timestamp
+        id: Date.now(),
         name: file.name,
         type: file.type,
         size: file.size,
@@ -61,7 +61,6 @@ let handleFileSelect = (event: Event) => {
       };
       
       try {
-        // Adiciona o novo arquivo ao array
         filesStorage = [...filesStorage, fileData];
         localStorage.setItem('uploadedFiles', JSON.stringify(filesStorage));
         console.log('Arquivo salvo no localStorage!');
@@ -86,7 +85,6 @@ let handleFileSelect = (event: Event) => {
 </script>
 
 <div id="carossel" class="w-60 h-14 m-2 rounded-md border flex items-center gap-2">
-  <!-- Input file oculto -->
   <input 
     type="file" 
     bind:this={fileInput}
@@ -110,7 +108,6 @@ let handleFileSelect = (event: Event) => {
   
 </button>
 
-  <!-- For loop para exibir todos os arquivos -->
   {#each filesStorage as file, index (file.id)}
     <div class="w-8 h-8 border border-zinc-900 rounded-full overflow-hidden bg-gray-200 relative cursor-pointer" 
          on:click={() => removeFile(index)}
